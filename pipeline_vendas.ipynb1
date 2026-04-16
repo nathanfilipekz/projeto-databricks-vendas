@@ -15,7 +15,6 @@
    },
    "outputs": [],
    "source": [
-    "# Faturamento total \n",
     "df_total = df_silver.groupBy() \\\n",
     "    .agg(sum(\"Total_Calculado\").alias(\"Faturamento_Total\"))\n",
     "\n",
@@ -37,7 +36,6 @@
    },
    "outputs": [],
    "source": [
-    "# Top produtos\n",
     "df_top = df_silver.groupBy(\"Produto\") \\\n",
     "    .agg(sum(\"Total_Calculado\").alias(\"Faturamento\")) \\\n",
     "    .orderBy(\"Faturamento\", ascending=False)\n",
@@ -60,7 +58,6 @@
    },
    "outputs": [],
    "source": [
-    "# Faturamento por data\n",
     "df_data = df_silver.groupBy(\"Data\") \\\n",
     "    .agg(sum(\"Total_Calculado\").alias(\"Faturamento_Dia\"))\n",
     "\n",
@@ -82,7 +79,6 @@
    },
    "outputs": [],
    "source": [
-    "# Quantidade por produto\n",
     "df_qtd = df_silver.groupBy(\"Produto\") \\\n",
     "    .agg(sum(\"Quantidade\").alias(\"Quantidade_Total\"))\n",
     "\n",
@@ -104,7 +100,6 @@
    },
    "outputs": [],
    "source": [
-    "# Salvar Gold\n",
     "df_gold.write.mode(\"overwrite\").saveAsTable(\"vendas_gold\")"
    ]
   },
@@ -123,7 +118,6 @@
    },
    "outputs": [],
    "source": [
-    "# Faturamento por produto (Gold)\n",
     "from pyspark.sql.functions import sum\n",
     "\n",
     "df_gold = df_silver.groupBy(\"Produto\") \\\n",
@@ -147,7 +141,6 @@
    },
    "outputs": [],
    "source": [
-    "# Carregar Silver\n",
     "df_silver = spark.read.table(\"vendas_silver\")"
    ]
   },
@@ -166,7 +159,6 @@
    },
    "outputs": [],
    "source": [
-    "# salvar Silver\n",
     "df_silver.write.mode(\"overwrite\").saveAsTable(\"vendas_silver\")"
    ]
   },
@@ -185,7 +177,6 @@
    },
    "outputs": [],
    "source": [
-    "# Tratamento PySparky (Silver)\n",
     "from pyspark.sql.functions import col, to_date\n",
     "\n",
     "df = spark.read.table(\"vendas_raw\")\n",
@@ -213,7 +204,6 @@
    },
    "outputs": [],
    "source": [
-    "# Inserir dados\n",
     "%sql\n",
     "INSERT INTO vendas_raw VALUES\n",
     "(1, '2026-04-10', 'Notebook', 2, 3500, 7000),\n",
@@ -238,7 +228,6 @@
    },
    "outputs": [],
    "source": [
-    "# Criar Tabela\n",
     "%sql\n",
     "CREATE TABLE vendas_raw (\n",
     "  ID_Venda INT,\n",
@@ -264,7 +253,7 @@
    "notebookMetadata": {
     "pythonIndentUnit": 4
    },
-   "notebookName": "projeto",
+   "notebookName": "New Notebook 2026-04-16 11:59:44",
    "widgets": {}
   },
   "language_info": {
